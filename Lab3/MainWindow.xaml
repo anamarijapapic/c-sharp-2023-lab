@@ -1,0 +1,38 @@
+﻿<Window x:Class="Lab3.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab3"
+        mc:Ignorable="d"
+        Title="Patient Management System - Main Window" Height="700" Width="1000">
+    <Grid Background="DarkSeaGreen">
+        <Label Content="Patient Management System" HorizontalAlignment="Center" VerticalAlignment="Top" Height="60" Width="415" Margin="0,10,0,0" FontSize="32"/>
+
+        <!--Patient-->
+        <GroupBox Header="Manage Patients" HorizontalAlignment="Left" VerticalAlignment="Center" Height="450" Width="700" Margin="30,10,0,0">
+            <Grid>
+                <DataGrid x:Name="PatientGrid" HorizontalAlignment="Center" VerticalAlignment="Center" Height="400" Width="670">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Click="AdmittOrDischarge_Click">Admitt / Discharge</Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </GroupBox>
+
+        <!--Reception-->
+        <GroupBox Header="Reception Actions" HorizontalAlignment="Right" VerticalAlignment="Center" Height="90" Width="180" Margin="0,10,30,0">
+            <Button Content="Display Admitted Patients" Height="40" Width="150" Click="DisplayAdmittedPatients_Click"/>
+        </GroupBox>
+
+        <StatusBar VerticalAlignment="Bottom" Height="30" Background="Green">
+            <StatusBarItem Content="C# Programming - Lab 3 - Anamarija Papić" HorizontalAlignment="Center" FontSize="14"/>
+        </StatusBar>
+    </Grid>
+</Window>
