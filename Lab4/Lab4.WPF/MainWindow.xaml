@@ -1,0 +1,109 @@
+﻿<Window x:Class="Lab4.WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab4.WPF"
+        mc:Ignorable="d"
+        Title="Patient Management System - Main Window" Height="700" Width="1000">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="MinWidth" Value="60"/>
+            <Setter Property="Height" Value="30"/>
+        </Style>
+    </Window.Resources>
+    <Grid Background="DarkSeaGreen">
+        <Label Content="Patient Management System" HorizontalAlignment="Center" VerticalAlignment="Top" Height="60" Width="415" Margin="0,10,0,0" FontSize="32"/>
+
+        <!--Patient & Reception Management-->
+        <GroupBox Header="Patient and Reception Management" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="20" Margin="10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!--First Name-->
+                <Label Grid.Row="0" Grid.Column="0" Content="First Name:"/>
+                <TextBox Grid.Row="0" Grid.Column="1" Name="FirstNameTextBox"/>
+
+                <!--Last Name-->
+                <Label Grid.Row="1" Grid.Column="0" Content="Last Name:"/>
+                <TextBox Grid.Row="1" Grid.Column="1" Name="LastNameTextBox"/>
+
+                <!--OIB-->
+                <Label Grid.Row="2" Grid.Column="0" Content="OIB:"/>
+                <TextBox Grid.Row="2" Grid.Column="1" Name="OIBTextBox"/>
+
+                <!--MBO-->
+                <Label Grid.Row="3" Grid.Column="0" Content="MBO:"/>
+                <TextBox Grid.Row="3" Grid.Column="1" Name="MBOTextBox"/>
+
+                <!--Gender-->
+                <Label Grid.Row="4" Grid.Column="0" Content="Gender:"/>
+                <ComboBox Grid.Row="4" Grid.Column="1" Name="GenderComboBox">
+                </ComboBox>
+
+                <!--Date of Birth-->
+                <Label Grid.Row="5" Grid.Column="0" Content="Date of Birth:"/>
+                <DatePicker Grid.Row="5" Grid.Column="1" Name="DateOfBirthDatePicker"/>
+
+                <!--Admission Date-->
+                <Label Grid.Row="6" Grid.Column="0" Content="Admission Date:"/>
+                <DatePicker Grid.Row="6" Grid.Column="1" Name="AdmissionDateDatePicker"/>
+
+                <!--Discharge Date-->
+                <Label Grid.Row="7" Grid.Column="0" Content="Discharge Date:"/>
+                <DatePicker Grid.Row="7" Grid.Column="1" Name="DischargeDateDatePicker"/>
+
+                <!--Diagnosis-->
+                <Label Grid.Row="8" Grid.Column="0" Content="Diagnosis:"/>
+                <ComboBox Grid.Row="8" Grid.Column="1" Name="DiagnosisComboBox" Width="300">
+                </ComboBox>
+
+                <Label Grid.Row="9" Grid.Column="0" Content="Insurance:"/>
+                <ComboBox Grid.Row="9" Grid.Column="1" Name="InsuranceComboBox" Width="300">
+                </ComboBox>
+
+                <!--Action Buttons-->
+                <StackPanel Grid.Row="10" Grid.Column="0" Orientation="Horizontal" Margin="0,30,0,0">
+                    <Button Name="AddButton" Content="Add" Click="AddButton_Click"/>
+                    <Button Name="EditButton" Content="Edit" Click="EditButton_Click"/>
+                    <Button Name="DeleteButton" Content="Delete" Click="DeleteButton_Click"/>
+                    <Button Name="ClearButton" Content="Clear" Click="ClearButton_Click"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal" Margin="20,0,0,0">
+                    <TextBlock>Manage Patients:</TextBlock>
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Grid.RowSpan="8" Grid.Column="2" Orientation="Horizontal" Margin="20,0,0,0">
+                    <ListBox x:Name="PatientsListBox" BorderThickness="1" Width="400" Height="250" 
+                             BorderBrush="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" 
+                             SelectionChanged="PatientListView_SelectionChanged"/>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+
+        <StatusBar VerticalAlignment="Bottom" Height="30" Background="Green">
+            <StatusBarItem Content="C# Programming - Lab 4 - Anamarija Papić" HorizontalAlignment="Center" FontSize="14"/>
+        </StatusBar>
+    </Grid>
+</Window>
