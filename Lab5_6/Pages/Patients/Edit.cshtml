@@ -1,0 +1,80 @@
+﻿@page
+@using Lab5_6.Entities.Enums;
+@model EditModel
+@{
+    ViewData["Title"] = "Patients | Edit";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Patient!.Id" />
+    <div class="form-group">
+        <label asp-for="Patient!.OIB" class="control-label"></label>
+        <input asp-for="Patient!.OIB" class="form-control" />
+        <span asp-validation-for="Patient!.OIB" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Patient!.MBO" class="control-label"></label>
+        <input asp-for="Patient!.MBO" class="form-control" />
+        <span asp-validation-for="Patient!.MBO" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Patient!.FirstName" class="control-label"></label>
+        <input asp-for="Patient!.FirstName" class="form-control" />
+        <span asp-validation-for="Patient!.FirstName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Patient!.LastName" class="control-label"></label>
+        <input asp-for="Patient!.LastName" class="form-control" />
+        <span asp-validation-for="Patient!.LastName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Patient!.DateOfBirth" class="control-label"></label>
+        <input asp-for="Patient!.DateOfBirth" class="form-control" max="@DateTime.Now.ToString("yyyy-MM-dd")" />
+        <span asp-validation-for="Patient!.DateOfBirth" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Patient!.Gender" class="control-label"></label>
+        <select asp-for="Patient!.Gender" class="form-control" 
+                asp-items="@(Html.GetEnumSelectList<Gender>())">
+            <option>Please select</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Patient!.Diagnosis" class="control-label"></label>
+        <select asp-for="Patient!.Diagnosis" class="form-control" 
+            asp-items="@(Html.GetEnumSelectList<Diagnosis>())">
+            <option>Please select</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Patient!.Insurance" class="control-label"></label>
+        <select asp-for="Patient!.Insurance" class="form-control"
+                asp-items="@(Html.GetEnumSelectList<Insurance>())">
+            <option>Please select</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Patient!.AdmissionDate" class="control-label"></label>
+        <input asp-for="Patient!.AdmissionDate" class="form-control"  max="@DateTime.Now.ToString("yyyy-MM-dd")"/>
+        <span asp-validation-for="Patient!.AdmissionDate" class="text-danger"></span>
+    </div>
+    @if (Model.Patient!.DischargeDate != null){
+        <div class="form-group">
+            <label asp-for="@Model.Discharge!.Date" class="control-label"></label>
+            <input asp-for="@Model.Discharge!.Date" class="form-control" max="@DateTime.Now.ToString("yyyy-MM-dd")"/>
+            <span asp-validation-for="@Model.Discharge!.Date" class="text-danger"></span>
+        </div>
+    }
+    <div class="form-group">
+        <input type="submit" value="Update" class="btn btn-info form-control mt-3" />
+    </div>
+</form>
+
+<a asp-page="/Patients/Index">Back to all patients</a>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,81 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Patients | Index";
+    var currentSort = ViewData["CurrentSort"] as string;
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<a asp-page="/Patients/Create" type="button" class="btn btn-success">
+    Add
+</a>
+
+<nav class="navbar navbar-light bg-light">
+    <form asp-action="Patients" method="get" class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="SearchString" value="@ViewData["CurrentFilter"]">
+        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+    </form>
+</nav>
+
+<a asp-action="">Reset filters & search input</a>
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <tr>
+            @foreach(var property in Model.PropertyNames)
+            {
+                if (property != "DateOfBirth" 
+                    && property != "Gender" 
+                    && property != "Diagnosis" 
+                    && property != "Insurance")
+                {
+                    <th>
+                        @property
+                        <a asp-page="/Patients/Index" asp-route-sortOrder=@($"{@property}") class="text-decoration-none">
+                            <span class="bi bi-arrow-up text-secondary"></span>
+                        </a>
+                        <a asp-page="/Patients/Index" asp-route-sortOrder=@($"{@property}Desc") class="text-decoration-none">
+                            <span class="bi bi-arrow-down text-secondary"></span>
+                        </a>
+                    </th>
+                }
+                else
+                {
+                    <th>
+                        @property
+                    </th>
+                }
+            }
+            <th>
+                Actions
+            </th>
+        </tr>
+        @foreach (var patient in Model.Patients!)
+        {
+            <tr>
+                <td>@patient.OIB</td>
+                <td>@patient.MBO</td>
+                <td>@patient.FirstName</td>
+                <td>@patient.LastName</td>
+                <td>@patient.DateOfBirth.ToString("dd/MM/yyyy")</td>
+                <td>@patient.Gender</td>
+                <td>@patient.Diagnosis</td>
+                <td>@patient.Insurance</td>
+                <td>@patient.AdmissionDate.ToString("dd/MM/yyyy")</td>
+                @if (patient.DischargeDate != null){
+                    <td>@patient.DischargeDate.Value.ToString("MM/dd/yyyy")</td>
+                } else{
+                    <td>-</td>
+                }
+                <td>
+                    <a asp-page="/Patients/Edit" asp-route-id="@patient.Id" class="link-info">Edit</a>
+                    <a asp-page="/Patients/Delete" asp-route-id="@patient.Id" class="link-danger">Delete</a>
+                    @if (patient.DischargeDate == null) {
+                        <a asp-page="/Patients/Discharge" asp-route-id="@patient.Id" class="link-secondary">Discharge</a>
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+</div>
