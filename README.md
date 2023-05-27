@@ -1,3 +1,6 @@
-# C-sharp-lab
+# Programiranje u C# - SRC136
 
-All labs need to be in one solution.
+SOSS Kopilica, Računarstvo - 3. godina, 6. semestar; akademska godina 2022./2023.
+
+Nositelj predmeta: Josip Vrlić, predavač  
+Suradnik/asistent: Ante Maretić  
